@@ -84,7 +84,9 @@ class SlackFormatter
           match = match.replace /@[\w\.-]+/, "<!#{username}>"
         else
           match #do nothing if we don't revognize the name
-
+      text.replace /(?:^| )#(G[A-Z0-9]+)/gm, (match, group) =>
+        match = match.replace /#G[0-9A-Z]+/, "<\##{group}>"
+        
     # object passed in, parse each property recursively
     else if typeof text is 'object'
       for key, value of text
